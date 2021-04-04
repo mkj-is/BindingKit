@@ -8,9 +8,21 @@ final class BindingCoalescingTests: XCTestCase {
         XCTAssertEqual(binding.wrappedValue, "fallback")
     }
     
-    func testBasicCoalescingWithValue() {
+    func testCoalescingWithValue() {
         let binding = Binding<String?>.constant("value") ?? "fallback"
         XCTAssertEqual(binding.wrappedValue, "value")
+    }
+    
+    func testCoalescingSetNewValue() {
+        let binding = Binding<String?>(storedValue: nil) ?? "fallback"
+        binding.wrappedValue = "newValue"
+        XCTAssertEqual(binding.wrappedValue, "newValue")
+    }
+    
+    func testCoalescingSetNewNilValue() {
+        let binding: Binding<String?> = .init(storedValue: "value") ?? "fallback"
+        binding.wrappedValue = nil
+        XCTAssertEqual(binding.wrappedValue, "fallback")
     }
     
     func testOptionalCoalescingWithNil() {
