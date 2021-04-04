@@ -1,4 +1,3 @@
-
 public struct Transformation<Source, Destination> {
     public let forth: (Source) -> Destination
     public let back: (Destination) -> Source

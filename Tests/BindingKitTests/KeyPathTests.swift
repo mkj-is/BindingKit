@@ -12,7 +12,7 @@ final class KeyPathTests: XCTestCase {
         let binding = Binding(reference, keyPath: \.property)
         XCTAssertEqual(binding.wrappedValue, "defaultValue")
     }
-    
+
     func testsKeyPathSet() {
         let reference = ReferenceMock()
         let binding = Binding(reference, keyPath: \.property)

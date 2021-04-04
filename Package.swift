@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "BindingKit",
-            targets: ["BindingKit"]),
+            targets: ["BindingKit"])
     ],
     targets: [
         .target(
@@ -16,6 +16,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "BindingKitTests",
-            dependencies: ["BindingKit"]),
+            dependencies: ["BindingKit"])
     ]
 )
