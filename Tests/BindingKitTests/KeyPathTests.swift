@@ -6,7 +6,7 @@ private final class ReferenceMock {
     var property: String = "defaultValue"
 }
 
-final class BindingKeyPathTests: XCTestCase {
+final class KeyPathTests: XCTestCase {
     func testsKeyPathInit() {
         let reference = ReferenceMock()
         let binding = Binding(reference, keyPath: \.property)

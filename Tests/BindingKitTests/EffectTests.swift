@@ -2,7 +2,7 @@ import XCTest
 import SwiftUI
 import BindingKit
 
-final class BindingEffectTests: XCTestCase {
+final class EffectTests: XCTestCase {
     func testWillSet() {
         var innerValue = "firstValue"
         let binding = Binding { innerValue } set: { innerValue = $0 }

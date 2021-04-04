@@ -2,7 +2,7 @@ import XCTest
 import SwiftUI
 import BindingKit
 
-final class BindingCoalescingTests: XCTestCase {
+final class CoalescingTests: XCTestCase {
     func testBasicCoalescing() {
         let binding = Binding<String?>.constant(nil) ?? "fallback"
         XCTAssertEqual(binding.wrappedValue, "fallback")

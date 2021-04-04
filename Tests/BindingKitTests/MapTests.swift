@@ -2,7 +2,7 @@ import XCTest
 import SwiftUI
 import BindingKit
 
-final class BindingMapTests: XCTestCase {
+final class MapTests: XCTestCase {
     func testBackAndForthMapGet() {
         let binding = Binding<Int>(storedValue: 1)
         let mapped = binding.map(forth: String.init, back: { Int($0) ?? 0 })

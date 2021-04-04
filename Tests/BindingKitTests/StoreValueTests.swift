@@ -2,7 +2,7 @@ import XCTest
 import BindingKit
 import SwiftUI
 
-final class BindingStoreValueTests: XCTestCase {
+final class StoreValueTests: XCTestCase {
     func testStoredValue() {
         let binding = Binding(storedValue: 1)
         binding.wrappedValue += 1
