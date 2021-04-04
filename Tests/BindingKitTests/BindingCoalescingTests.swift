@@ -1,6 +1,6 @@
 import XCTest
 import SwiftUI
-@testable import BindingKit
+import BindingKit
 
 final class BindingCoalescingTests: XCTestCase {
     func testBasicCoalescing() {

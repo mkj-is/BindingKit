@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension Binding {
-    func didSet(effect: @escaping (Value) -> Void) -> Self {
+    public func didSet(effect: @escaping (Value) -> Void) -> Self {
         Binding(
             get: { self.wrappedValue },
             set: { newValue in
@@ -11,7 +11,7 @@ extension Binding {
         )
     }
 
-    func willSet(effect: @escaping (Value) -> Void) -> Self {
+    public func willSet(effect: @escaping (Value) -> Void) -> Self {
         Binding(
             get: { self.wrappedValue },
             set: { newValue in
