@@ -9,6 +9,7 @@ extension Binding {
                 effect(newValue)
             }
         )
+        .transaction(transaction)
     }
 
     public func willSet(effect: @escaping (Value) -> Void) -> Self {
@@ -19,5 +20,6 @@ extension Binding {
                 self.wrappedValue = newValue
             }
         )
+        .transaction(transaction)
     }
 }

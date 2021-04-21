@@ -8,6 +8,7 @@ extension Binding {
                 self.wrappedValue = back(value)
             }
         )
+        .transaction(transaction)
     }
 
     public func map<T>(_ transformation: Transformation<Value, T>) -> Binding<T> {

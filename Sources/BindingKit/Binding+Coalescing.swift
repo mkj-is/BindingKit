@@ -7,6 +7,7 @@ extension Binding {
         } set: { newValue in
             lhs.wrappedValue = newValue
         }
+        .transaction(lhs.transaction)
     }
 
     public static func ?? <T>(lhs: Self, rhs: T) -> Binding<T> where Value == T? {
@@ -15,5 +16,6 @@ extension Binding {
         } set: { newValue in
             lhs.wrappedValue = newValue
         }
+        .transaction(lhs.transaction)
     }
 }
