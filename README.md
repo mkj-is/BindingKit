@@ -16,6 +16,7 @@ wrapped value to a child view or if you want to transform the wrapped value to a
 - Two-way map function for transforming wrapped value back and forth.
 - Creation of `Binding` with stored value for those cases where constant binding does not suffice. 
 - Creating Binding from a property of some reference-type.
+- Transform transactions via closures or keypaths (e.g., setting `.disablesAnimations` or custom `TransactionKey` flags inline).
 
 ## Installation
 
