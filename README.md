@@ -24,7 +24,7 @@ Add this package to your Xcode project or add following line
 to your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/mkj-is/BindingKit.git", from: "1.0.0")
+.package(url: "https://github.com/mkj-is/BindingKit.git", from: "1.1.0")
 ```
 
 ## Contributing
