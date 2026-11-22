@@ -1,23 +1,26 @@
 import SwiftUI
 import BindingKit
-import XCTest
+import Testing
 
 private final class ReferenceMock {
     var property: String = "defaultValue"
 }
 
-final class KeyPathTests: XCTestCase {
-    func testsKeyPathInit() {
+@Suite("Key path tests")
+struct KeyPathTests {
+    @Test("Key path initialization")
+    func keyPathInit() {
         let reference = ReferenceMock()
         let binding = Binding(reference, keyPath: \.property)
-        XCTAssertEqual(binding.wrappedValue, "defaultValue")
+        #expect(binding.wrappedValue == "defaultValue")
     }
 
-    func testsKeyPathSet() {
+    @Test("Key path setter")
+    func keyPathSet() {
         let reference = ReferenceMock()
         let binding = Binding(reference, keyPath: \.property)
         binding.wrappedValue = "newValue"
-        XCTAssertEqual(binding.wrappedValue, "newValue")
-        XCTAssertEqual(reference.property, "newValue")
+        #expect(binding.wrappedValue == "newValue")
+        #expect(reference.property == "newValue")
     }
 }

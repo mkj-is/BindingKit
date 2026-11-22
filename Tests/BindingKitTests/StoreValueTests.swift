@@ -1,11 +1,13 @@
-import XCTest
 import BindingKit
 import SwiftUI
+import Testing
 
-final class StoreValueTests: XCTestCase {
-    func testStoredValue() {
+@Suite("Store value tests")
+struct StoreValueTests {
+    @Test("Stored value")
+    func storedValue() {
         let binding = Binding(storedValue: 1)
         binding.wrappedValue += 1
-        XCTAssertEqual(binding.wrappedValue, 2)
+        #expect(binding.wrappedValue == 2)
     }
 }

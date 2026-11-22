@@ -1,61 +1,72 @@
-import XCTest
 import SwiftUI
 import BindingKit
+import Testing
 
-final class CoalescingTests: XCTestCase {
-    func testBasicCoalescing() {
+@Suite("Coalescing tests")
+struct CoalescingTests {
+    @Test("Basic coalescing")
+    func basicCoalescing() {
         let binding = Binding<String?>.constant(nil) ?? "fallback"
-        XCTAssertEqual(binding.wrappedValue, "fallback")
+        #expect(binding.wrappedValue == "fallback")
     }
 
-    func testCoalescingWithValue() {
+    @Test("Coalescing with value")
+    func coalescingWithValue() {
         let binding = Binding<String?>.constant("value") ?? "fallback"
-        XCTAssertEqual(binding.wrappedValue, "value")
+        #expect(binding.wrappedValue == "value")
     }
 
-    func testNonOptionalCoalescingWithNil() {
+    @Test("Non-optional coalescing with nil")
+    func nonOptionalCoalescingWithNil() {
         let binding: Binding<String> = .constant(nil) ?? "fallback"
-        XCTAssertEqual(binding.wrappedValue, "fallback")
+        #expect(binding.wrappedValue == "fallback")
     }
 
-    func testNonOptionalCoalescingWithValue() {
+    @Test("Non-optional coalescing with value")
+    func nonOptionalCoalescingWithValue() {
         let binding: Binding<String> = .constant("value") ?? "fallback"
-        XCTAssertEqual(binding.wrappedValue, "value")
+        #expect(binding.wrappedValue == "value")
     }
 
-    func testCoalescingSetNewValue() {
+    @Test("Coalescing sets a new value")
+    func coalescingSetNewValue() {
         let source = Binding<String?>(storedValue: nil)
         let binding: Binding<String> = source ?? "fallback"
         binding.wrappedValue = "newValue"
-        XCTAssertEqual(source.wrappedValue, "newValue")
-        XCTAssertEqual(binding.wrappedValue, "newValue")
+        #expect(source.wrappedValue == "newValue")
+        #expect(binding.wrappedValue == "newValue")
     }
 
-    func testCoalescingSetNewNilValue() {
+    @Test("Coalescing sets nil")
+    func coalescingSetNewNilValue() {
         let source = Binding<String?>(storedValue: "value")
         let binding: Binding<String?> = source ?? "fallback"
         binding.wrappedValue = nil
-        XCTAssertNil(source.wrappedValue)
-        XCTAssertEqual(binding.wrappedValue, "fallback")
+        #expect(source.wrappedValue == nil)
+        #expect(binding.wrappedValue == "fallback")
     }
 
-    func testOptionalCoalescingWithNil() {
+    @Test("Optional coalescing with nil")
+    func optionalCoalescingWithNil() {
         let binding = Binding<String?>.constant(nil) ?? nil
-        XCTAssertEqual(binding.wrappedValue, nil)
+        #expect(binding.wrappedValue == nil)
     }
 
-    func testOptionalCoalescingWithValue() {
+    @Test("Optional coalescing with value")
+    func optionalCoalescingWithValue() {
         let binding: Binding<String?> = .constant(nil) ?? "value"
-        XCTAssertEqual(binding.wrappedValue, "value")
+        #expect(binding.wrappedValue == "value")
     }
 
-    func testOptionalCoalescingWithConstantValue() {
+    @Test("Optional coalescing with constant value")
+    func optionalCoalescingWithConstantValue() {
         let binding: Binding<String?> = .constant("value") ?? nil
-        XCTAssertEqual(binding.wrappedValue, "value")
+        #expect(binding.wrappedValue == "value")
     }
 
-    func testCoalescingChain() {
+    @Test("Coalescing chain")
+    func coalescingChain() {
         let binding = Binding<String?>.constant(nil) ?? nil ?? "fallback"
-        XCTAssertEqual(binding.wrappedValue, "fallback")
+        #expect(binding.wrappedValue == "fallback")
     }
 }

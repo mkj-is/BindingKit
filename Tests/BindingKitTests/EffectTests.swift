@@ -1,33 +1,30 @@
-import XCTest
 import SwiftUI
 import BindingKit
+import Testing
 
-final class EffectTests: XCTestCase {
-    func testWillSet() {
+@Suite("Effect tests")
+struct EffectTests {
+    @Test("Will-set effect")
+    func willSet() {
         var innerValue = "firstValue"
         let binding = Binding { innerValue } set: { innerValue = $0 }
 
-        let expectation = self.expectation(description: "Will set called")
         let bindingWithEffect = binding.willSet { newValue in
-            XCTAssertEqual(binding.wrappedValue, "firstValue")
-            XCTAssertEqual(newValue, "secondValue")
-            expectation.fulfill()
+            #expect(binding.wrappedValue == "firstValue")
+            #expect(newValue == "secondValue")
         }
         bindingWithEffect.wrappedValue = "secondValue"
-        wait(for: [expectation], timeout: 0)
     }
 
-    func testDidSet() {
+    @Test("Did-set effect")
+    func didSet() {
         var innerValue = "firstValue"
         let binding = Binding { innerValue } set: { innerValue = $0 }
 
-        let expectation = self.expectation(description: "Will set called")
         let bindingWithEffect = binding.didSet { newValue in
-            XCTAssertEqual(binding.wrappedValue, "secondValue")
-            XCTAssertEqual(newValue, "secondValue")
-            expectation.fulfill()
+            #expect(binding.wrappedValue == "secondValue")
+            #expect(newValue == "secondValue")
         }
         bindingWithEffect.wrappedValue = "secondValue"
-        wait(for: [expectation], timeout: 0)
     }
 }
