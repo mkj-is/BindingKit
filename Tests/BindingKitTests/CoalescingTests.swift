@@ -32,8 +32,10 @@ final class CoalescingTests: XCTestCase {
     }
 
     func testCoalescingSetNewNilValue() {
-        let binding: Binding<String?> = .init(storedValue: "value") ?? "fallback"
+        let source = Binding<String?>(storedValue: "value")
+        let binding: Binding<String?> = source ?? "fallback"
         binding.wrappedValue = nil
+        XCTAssertNil(source.wrappedValue)
         XCTAssertEqual(binding.wrappedValue, "fallback")
     }
 
