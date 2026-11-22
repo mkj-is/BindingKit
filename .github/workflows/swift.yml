@@ -8,11 +8,20 @@ on:
 
 jobs:
   build:
-
-    runs-on: macos-latest
+    name: Build and test (${{ matrix.runner }})
+    strategy:
+      matrix:
+        include:
+          - runner: macos-latest
+          - runner: macos-15
+    runs-on: ${{ matrix.runner }}
 
     steps:
     - uses: actions/checkout@v4
+    - name: Verify Swift version
+      run: swift --version
+    - name: Verify Xcode version
+      run: xcodebuild -version
     - name: Build
       run: swift build
     - name: Run tests
