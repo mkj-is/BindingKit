@@ -17,5 +17,6 @@ let package = Package(
         .testTarget(
             name: "BindingKitTests",
             dependencies: ["BindingKit"])
-    ]
+    ],
+    swiftLanguageModes: [.v5]
 )
